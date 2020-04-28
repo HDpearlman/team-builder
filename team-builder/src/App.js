@@ -1,24 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import Members from './Members'
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+  const [members, setMembers] = useState([{name:'Heung-Soo'}]);
+
+  const [name, setName] = useState("");
+
+  const changeHandler = event => {
+    setName(event.target.value);
+    console.log(name)
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    setMembers([...members, {name}])
+    console.log(name);
+    
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <form onSubmit={event => handleSubmit(event)}>
+          <label>New Member:
+        <input type='text' onChange={event => changeHandler(event)}></input>
+          </label>
+        </form>
+        <button onClick={handleSubmit}>add member</button></div>
+     <div><Members members={members}/></div>
     </div>
   );
 }
