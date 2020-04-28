@@ -17,6 +17,8 @@ function App() {
     event.preventDefault();
     setMembers([...members, {name}])
     console.log(name);
+    setName('')
+  
     
   }
   
@@ -25,7 +27,11 @@ function App() {
       <div>
         <form onSubmit={event => handleSubmit(event)}>
           <label>New Member:
-        <input type='text' onChange={event => changeHandler(event)}></input>
+        <input 
+          type='text' 
+          name='member' 
+          value={name}
+          onChange={event => changeHandler(event)}></input>
           </label>
         </form>
         <button onClick={handleSubmit}>add member</button></div>
